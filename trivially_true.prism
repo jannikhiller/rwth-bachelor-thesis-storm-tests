@@ -1,0 +1,16 @@
+smg
+
+player p1 player1 endplayer
+player p2 player2 endplayer
+
+module player1
+  v : [0..4];
+  [] v=0 -> 1/2 : (v'=1) + 1/2 : (v'=2);
+  [] v=3 -> 1 : (v'=4);
+  [] v=4 -> 1 : (v'=2);
+endmodule
+
+module player2
+  [] v=1 -> true;
+  [] v=2 -> true;
+endmodule

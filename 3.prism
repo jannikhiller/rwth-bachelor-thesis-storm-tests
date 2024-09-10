@@ -1,0 +1,22 @@
+smg
+
+player tri m_tri endplayer
+player cir m_cir endplayer
+player sqr m_sqr endplayer
+
+global state : [0..4] init 4;
+
+module m_cir
+  [] state=1 -> (state'=2);
+endmodule
+
+module m_tri
+  [] state=2 -> (state'=2);
+endmodule
+
+module m_sqr
+  [] state=4 -> (state'=3);
+  [] state=4 -> 1/2 : (state'=1) + 1/2 : (state'=2);
+endmodule
+
+

@@ -1,0 +1,22 @@
+smg
+
+global state : [0..2];
+
+player p1 m1 endplayer
+player p2 m2 endplayer
+player p3 m3 endplayer
+
+module m1
+	[] state=0 -> true;
+	[] state=0 -> 1/2 : (state'=1) + 1/2 : (state'=2);
+endmodule
+
+module m2
+	[] state=1 -> true;
+	[] state=1 -> 1/2 : (state'=0) + 1/2 : (state'=2);
+endmodule
+
+module m3
+	[] state=2 -> true;
+	[] state=2 -> 1/2 : (state'=0) + 1/2 : (state'=1);
+endmodule

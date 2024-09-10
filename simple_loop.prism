@@ -1,0 +1,11 @@
+smg
+
+player p1 player1 endplayer
+
+global state : [0..1];
+
+module player1
+	[] state=0 -> 1/2 : (state'=0) + 1/2 : (state'=1);
+endmodule
+
+label "target" = state=1;
