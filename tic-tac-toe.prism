@@ -1,0 +1,92 @@
+smg
+
+player p1 m_p1 endplayer
+player p2 m_p2 endplayer
+player random m_random endplayer
+
+global top_left : [0..2];
+global top_middle : [0..2];
+global top_right : [0..2];
+
+global middle_left : [0..2];
+global middle_middle : [0..2];
+global middle_right : [0..2];
+
+global bottom_left : [0..2];
+global bottom_middle : [0..2];
+global bottom_right : [0..2];
+
+global turn : [0..6];
+
+module m_p1
+  [] (turn=0 | turn=2) & !end & top_left=0 -> 1 : (top_left'=1)&(turn'=turn+1);
+  [] (turn=0 | turn=2) & !end & top_middle=0 -> 1 : (top_middle'=1)&(turn'=turn+1);
+  [] (turn=0 | turn=2) & !end & top_right=0 -> 1 : (top_right'=1)&(turn'=turn+1);
+  [] (turn=0 | turn=2) & !end & middle_left=0 -> 1 : (middle_left'=1)&(turn'=turn+1);
+  [] (turn=0 | turn=2) & !end & middle_middle=0 -> 1 : (middle_middle'=1)&(turn'=turn+1);
+  [] (turn=0 | turn=2) & !end & middle_right=0 -> 1 : (middle_right'=1)&(turn'=turn+1);
+  [] (turn=0 | turn=2) & !end & bottom_left=0 -> 1 : (bottom_left'=1)&(turn'=turn+1);
+  [] (turn=0 | turn=2) & !end & bottom_middle=0 -> 1 : (bottom_middle'=1)&(turn'=turn+1);
+  [] (turn=0 | turn=2) & !end & bottom_right=0 -> 1 : (bottom_right'=1)&(turn'=turn+1);
+endmodule
+
+module m_p2
+  [] (turn=1 | turn=3) & !end & top_left=0 -> 1 : (top_left'=2)&(turn'=turn+1);
+  [] (turn=1 | turn=3) & !end & top_middle=0 -> 1 : (top_middle'=2)&(turn'=turn+1);
+  [] (turn=1 | turn=3) & !end & top_right=0 -> 1 : (top_right'=2)&(turn'=turn+1);
+  [] (turn=1 | turn=3) & !end & middle_left=0 -> 1 : (middle_left'=2)&(turn'=turn+1);
+  [] (turn=1 | turn=3) & !end & middle_middle=0 -> 1 : (middle_middle'=2)&(turn'=turn+1);
+  [] (turn=1 | turn=3) & !end & middle_right=0 -> 1 : (middle_right'=2)&(turn'=turn+1);
+  [] (turn=1 | turn=3) & !end & bottom_left=0 -> 1 : (bottom_left'=2)&(turn'=turn+1);
+  [] (turn=1 | turn=3) & !end & bottom_middle=0 -> 1 : (bottom_middle'=2)&(turn'=turn+1);
+  [] (turn=1 | turn=3) & !end & bottom_right=0 -> 1 : (bottom_right'=2)&(turn'=turn+1);
+endmodule
+
+module m_random
+  [] (turn=4 & top_left=1) -> 1 : (turn'=5)&(top_left'=0);
+  [] (turn=4 & top_middle=1) -> 1 : (turn'=5)&(top_middle'=0);
+  [] (turn=4 & top_right=1) -> 1 : (turn'=5)&(top_right'=0);
+  [] (turn=4 & middle_left=1) -> 1 : (turn'=5)&(middle_left'=0);
+  [] (turn=4 & middle_middle=1) -> 1 : (turn'=5)&(middle_middle'=0);
+  [] (turn=4 & middle_right=1) -> 1 : (turn'=5)&(middle_right'=0);
+  [] (turn=4 & bottom_left=1) -> 1 : (turn'=5)&(bottom_left'=0);
+  [] (turn=4 & bottom_middle=1) -> 1 : (turn'=5)&(bottom_middle'=0);
+  [] (turn=4 & bottom_right=1) -> 1 : (turn'=5)&(bottom_right'=0);
+  [] (turn=5 & top_left=2) -> 1 : (turn'=0)&(top_left'=0);
+  [] (turn=5 & top_middle=2) -> 1 : (turn'=0)&(top_middle'=0);
+  [] (turn=5 & top_right=2) -> 1 : (turn'=0)&(top_right'=0);
+  [] (turn=5 & middle_left=2) -> 1 : (turn'=0)&(middle_left'=0);
+  [] (turn=5 & middle_middle=2) -> 1 : (turn'=0)&(middle_middle'=0);
+  [] (turn=5 & middle_right=2) -> 1 : (turn'=0)&(middle_right'=0);
+  [] (turn=5 & bottom_left=2) -> 1 : (turn'=0)&(bottom_left'=0);
+  [] (turn=5 & bottom_middle=2) -> 1 : (turn'=0)&(bottom_middle'=0);
+  [] (turn=5 & bottom_right=2) -> 1 : (turn'=0)&(bottom_right'=0);
+endmodule
+
+formula p1_win = 
+   (top_left=1&top_middle=1&top_right=1)
+  |(middle_left=1&middle_middle=1&middle_right=1)
+  |(bottom_left=1&bottom_middle=1&bottom_right=1)
+  |(top_left=1&middle_left=1&bottom_left=1)
+  |(top_middle=1&middle_middle=1&bottom_middle=1)
+  |(top_right=1&middle_right=1&bottom_right=1)
+  |(top_left=1&middle_middle=1&bottom_right=1)
+  |(top_right=1&middle_middle=1&bottom_left=1);
+
+formula p2_win = 
+   (top_left=2&top_middle=2&top_right=2)
+  |(middle_left=2&middle_middle=2&middle_right=2)
+  |(bottom_left=2&bottom_middle=2&bottom_right=2)
+  |(top_left=2&middle_left=2&bottom_left=2)
+  |(top_middle=2&middle_middle=2&bottom_middle=2)
+  |(top_right=2&middle_right=2&bottom_right=2)
+  |(top_left=2&middle_middle=2&bottom_right=2)
+  |(top_right=2&middle_middle=2&bottom_left=2);
+
+formula tie = !p1_win & !p2_win & top_left!=0 & top_middle!=0 & top_right!=0 & middle_left!=0 & middle_middle!=0 & middle_right!=0 & bottom_left!=0 & bottom_middle!=0 & bottom_right!=0;
+
+formula end = p1_win | p2_win | tie;
+  
+label "p1_win" = p1_win;
+label "p2_win" = p2_win;
+label "tie" = tie;

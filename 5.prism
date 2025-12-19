@@ -1,0 +1,14 @@
+
+smg
+player tri m_tri endplayer
+
+global state : [0..4] init 0;
+
+module m_tri
+  [] state=0 -> 1/2 : (state'=0) + 1/2 : (state'=1);
+  [] state=1 -> 1/2 : (state'=1) + 1/2 : (state'=2);
+  [] state=2 -> 1/2 : (state'=2) + 1/2 : (state'=3);
+  [] state=3 -> 1/2 : (state'=3) + 1/2 : (state'=4);
+  [] state=4 -> 1/2 : (state'=4) + 1/2 : (state'=5);
+  [] state=5 -> (state'=5);
+endmodule

@@ -96,14 +96,3 @@ endmodule
 
 // Labels
 label "finished" = i=2;
-
-// Reward: one-off collection of shares value at the end
-rewards "profit"
-
-	// Use state rewards:
-	i=1 & b=0 & m=0 : v;
-	
-	// Could also use transition rewards
-	// [cashin] i=1 : v;
-	
-endrewards

@@ -1,0 +1,11 @@
+mdp
+
+global state: [0..2] init 0;
+
+module m_sq
+  [] state=0 -> (state'=0);
+  [] state=0 -> 1/2 : (state'=1) + 1/2 : (state'=0);
+  [] state=1 -> (state'=1);
+  [] state=1 -> 1/2 : (state'=2) + 1/2 : (state'=0);
+  [] state=2 -> (state'=2);
+endmodule
